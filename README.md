@@ -5,13 +5,13 @@ sujal Padhiyar
 
 # Overview
 
-This document summarizes an analysis performed on an exercise surrounding a  [device_failure.csv](https://github.com/spadhiyar/Device-Failure-Project/edit/master/device_failure.csv) dataset. I will review the dataset, some exploratory data analysis, modeling and results of the analysis in a manner that might be typical of a work product. I have also created a companion document, [Device Failure Analysis - notebook](https://github.com/spadhiyar/Device-Failure-Project/edit/master/device_failure.md), that is intended to be a lab notebook documenting the entire thought process throughout the analysis, and has more extensive R code and model results. 
+This document summarizes an analysis performed on an exercise surrounding a  [device_failure.csv](https://github.com/spadhiyar/Device-Failure-Project/edit/master/device_failure.csv) dataset. I will review the dataset, some exploratory data analysis, modeling and results of the analysis in a manner that might be typical of a work product. I have also created a companion document, [Device Failure Analysis - notebook](https://github.com/spadhiyar/Device-Failure-Project/edit/master/device_failure.md), that is intended to be a documenting the entire thought process throughout the analysis, and has more extensive R code and model results. 
 
 We have the following minimal background:
 
 > The dataset represents log activity from a fleet of devices transmitting daily aggregated telemetry attributes.  
 
-> Predictive maintenance techniques are designed to help determine the condition of in-service equipment in order to predict when maintenance should be performed. This approach promises cost savings over routine or time-based preventive maintenance, because tasks are performed only when warranted. You are tasked with building a predictive model using machine learning to predict the probability of a device failure. When building this model, be sure to minimize false positives and false negatives. The column you are trying to predict is called failure with binary value 0 for non-failure and 1 for failure. 
+> Predictive maintenance techniques are designed to help determine the condition of in-service equipment in order to predict when maintenance should be performed. This approach promises cost savings over routine or time-based preventive maintenance, because tasks are performed only when warranted. we are tasked with building a predictive model using machine learning to predict the probability of a device failure. When building this model, goal is to minimize false positives and false negatives. 
 
 # Exploratory Data Analysis
 
@@ -126,7 +126,7 @@ data %>% filter(device %in% zombies) %>%
 
 The attributes are all integers, but many have the appearance of being error codes, with a large percentage of 0 values and large gaps between frequent occurances.  This is common with devices that may have error codes that are bit encoded (eg. 2,4,8,16...1024, etc.).  In a real world analysis, attempting to learn more about the meaning of the error codes  that may be well documented, might help to develop categorical variables with more predictive power than treating the attributes as integer.
 
-See the accompanying lab notebook for density plots that help describe the distributions. Below is a table of summary values for each attribute. A few observations:
+ Below is a table of summary values for each attribute. A few observations:
 
 + 6 attributes have very high percentage of zero values.  These could be error codes or some other indicator  
 + many of the attributes are heavily skewed.  These should be transformed for some analyses although this wasn't necessary for my models.
@@ -419,7 +419,7 @@ varImpPlot(rf2,type=2)
 
 Drift for attribute 4 was almost always the primary indicator of failure across all folds and models. After that n_rec and and variance for attributes 6 and 7 were also important, but switched rank between the different folds/models. 
 
-Additional models were also explored and their results are presented in the [accompanying lab-style notebook]((https://github.com/dsdaveh/device-failure-analysis/blob/master/device_failure.md)).
+Additional models were also explored and their results are presented in the [accompanying lab-style notebook]((https://github.com/spadhiyar/Device-Failure-Project/edit/master/device_failure.md)).
 
 Some observations from this phase:
 
@@ -479,4 +479,4 @@ So now we see the optimum cutoff point is 0.4 which means we predict pending fai
 
 # Conclusion
 
-We've completed an introductory analysis, and without too much work, can reliably predict about half the failures before they occur, assuming our data is representative of true field logs. With more data, we might be able to make better predictions, and could incorporate other techniques such as neural networks into the analysis. With more information on the cost of false negative/positives, we could also try updating a GBM model with a custom objective function to further optimize the training. In the real world, we might spend some research time digging into some of the attribute values to see if encoding specific values might also give lift to the model. As it stands, the model informs us on the most important attributes, and could lead to a productive discussion with the stakeholders and business subject matter experts that would help identify the next logical steps.
+We can reliably predict about half the failures before they occur, assuming our data is representative of true field logs. With more data, we might be able to make better predictions, and could incorporate other techniques such as neural networks into the analysis. With more information on the cost of false negative/positives, we could also try updating a GBM model with a custom objective function to further optimize the training. we might spend some research time digging into some of the attribute values to see if encoding specific values might also give lift to the model. As it stands, the model informs us on the most important attributes, and could lead to a productive discussion with the stakeholders and business subject matter experts that would help identify the next logical steps.
