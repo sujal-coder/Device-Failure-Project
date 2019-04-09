@@ -57,7 +57,7 @@ data %>% group_by(date) %>%
     ggtitle('Number of devices in population by date with rug plot of failure events')
 ```
 
-![](device_failure_report_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+![](device_failure_report_files/unnamed-chunk-3-1.png)<!-- -->
 
 
 There's some important information here. The big drop off in devices that happens in day 5 and 6 are not attributable to a corresponding surge in failures. This is the first clue that we'll need analyze this data at the device grain rather than the given device/day grain. 
