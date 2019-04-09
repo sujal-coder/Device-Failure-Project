@@ -1,12 +1,11 @@
 # Device Failure Analysis
-Dave Hurst  
-August 22, 2017  
+Sujal Padhiyar 
 
 
 
 # Overview
 
-This document summarizes an analysis performed on an exercise surrounding a  [device_failure.csv](https://github.com/dsdaveh/device-failure-analysis/blob/master/device_failure.csv) dataset. I will review the dataset, some exploratory data analysis, modeling and results of the analysis in a manner that might be typical of a work product. I have also created a companion document, [Device Failure Analysis - notebook](https://github.com/dsdaveh/device-failure-analysis/blob/master/device_failure.md), that is intended to be a lab notebook documenting the entire thought process throughout the analysis, and has more extensive R code and model results. 
+This document summarizes an analysis performed on an exercise surrounding a  [device_failure.csv] dataset. I will review the dataset, some exploratory data analysis, modeling and results of the analysis in a manner that might be typical of a work product. I have also created a companion document, [Device Failure Analysis - notebook](https://github.com/dsdaveh/device-failure-analysis/blob/master/device_failure.md), that is intended to be a lab notebook documenting the entire thought process throughout the analysis, and has more extensive R code and model results. 
 
 We have the following minimal background:
 
